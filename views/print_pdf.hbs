@@ -1,0 +1,11 @@
+<iframe id="printf" name='printf' style="height: 480px;width: 580px" src="pdf/design.pdf"></iframe>
+<script>
+    $(document).ready(function () {
+        pdf=document.getElementById('printf');
+        pdf.focus();
+
+        setTimeout(function () {
+            pdf.contentWindow.print();
+        },10);
+    })
+</script>
