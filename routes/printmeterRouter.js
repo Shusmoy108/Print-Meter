@@ -17,6 +17,7 @@ router.post("/design/insert", (req, res) => {
             res.redirect('/design/all');
         }
     });
+    //res.redirect('/design/all');
 });
 router.get("/design/all", (req, res) => {
 
@@ -47,7 +48,7 @@ Handlebars.registerHelper("designpage", function (design) {
     let part1 = "<div class='row '><div class='col-sm-offset-2'>";
     let top =
         "<div class='row ' style='margin-bottom:3%'><div class='col-sm-offset-2'>" +
-        "<div class='col-sm-2' style='font-size:20px'> Date : " +
+        "<div class='col-sm-4' style='font-size:20px'> Date : " +
         new Date().toDateString() +
         "</div>" +
         "<div class='col-sm-2' style='font-size:20px'>Machine Number : 5</div>" +
@@ -55,7 +56,7 @@ Handlebars.registerHelper("designpage", function (design) {
     var jobid = "";
     jobid =
         jobid +
-        "<div class='col-sm-2'><table class=\"table table-bordered \" id='result'>\n" +
+        "<div class='col-sm-4'><table class=\"table table-bordered \" id='result'>\n" +
         "    <thead><tr>\n" +
         "        <th colspan='3' style='text-align:center'>Job ID</th>\n</tr><tr>" +
         "        <th >Invoice Number</th>\n" +
@@ -74,7 +75,7 @@ Handlebars.registerHelper("designpage", function (design) {
     var deadline = "";
     deadline =
         deadline +
-        "<div class='col-sm-2 col-xs-offset-1'><table class=\"table table-bordered \" id='result'>\n" +
+        "<div class='col-sm-4 col-xs-offset-1'><table class=\"table table-bordered \" id='result'>\n" +
         "    <thead><tr>\n" +
         "        <th colspan='2' style='text-align:center'>Deadline</th>\n</tr><tr>" +
         "        <th >Date</th>\n" +
@@ -91,7 +92,7 @@ Handlebars.registerHelper("designpage", function (design) {
     var side = "";
     side =
         side +
-        "<div class='col-sm-2 '><table class=\"table table-bordered \" id='result'>\n" +
+        "<div class='col-sm-4 '><table class=\"table table-bordered \" id='result'>\n" +
         "    <thead><tr>\n" +
         "        <th >Side</th>\n" +
         "        <th >Sheet</th>\n" +
@@ -110,7 +111,7 @@ Handlebars.registerHelper("designpage", function (design) {
     var paper = "";
     paper =
         paper +
-        "<div class='col-sm-2 col-xs-offset-1'><table class=\"table table-bordered \" id='result'>\n" +
+        "<div class='col-sm-4 col-xs-offset-1'><table class=\"table table-bordered \" id='result'>\n" +
         "    <thead><tr>\n" +
         "        <th colspan='2' style='text-align:center'>Paper Size</th>\n<th colspan='2' style='text-align:center'>Gripper</th></tr>" +
         "      \n<tbody><td>" +
