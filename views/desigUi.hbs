@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div class="col-sm-3 col-sm-offset-3">
+    <div>
 
         <h1><span class="fa fa-sign-in"></span> Print Meter</h1>
 
@@ -11,48 +11,98 @@
 
         <!-- LOGIN FORM -->
         <form action="/design/insert" method="post">
-            <div class="form-group">
-                <label>Invoice Number</label>
-                <input type="number" class="form-control" name="invoiceNumber">
+
+            <div class="form-group" style="display: flex">
+                <div style="margin-right:3.5%">
+                    <label> Job ID : </label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Invoice No" name="invoiceNumber">
+                </div>
+                <div style="margin-right:1%">
+                    <p style="font-size:20px; text-align:center"> - </p>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Item No" name="itemNumber">
+                </div>
+                <div style="margin-right:1%">
+                    <p style="font-size:20px; text-align:center"> - </p>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Plate No" name="plateNumber">
+                </div>
+            </div>
+            <div class="form-group" style="display:flex">
+                <div style="margin-right:1%">
+                    <label> Paper Size : </label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Length" name="paperLength">
+                </div>
+                <div style="margin-right:1%">
+                    <p style="font-size:20px; text-align:center"> X </p>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Width" name="paperWidth">
+                </div>
             </div>
             <div class="form-group">
-                <label>Item Number</label>
-                <input type="number" class="form-control" name="itemNumber">
+                <label style="margin-right:2%">Gripper : </label>
+                <label class="radio-inline"><input type="radio" value="nogp" name="gripper" checked>No Gp</label>
+                <label class="radio-inline"><input type="radio" value="1gp" name="gripper">1 Gp</label>
+                <label class="radio-inline"><input type="radio" value="2gp" name="gripper">2 Gp</label>
+            </div>
+            <div class="form-group" style="display:flex">
+                <div style="margin-right:1%">
+                    <label>Sheet</label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" id='sht' class="form-control" id='sheet' name="sheet">
+                </div>
+                <div style="margin-right:1%">
+                    <label>Side</label>
+                </div>
+                <div style="margin-right:1%">
+                    <select class="form-control" id="sid" name="side">
+                        <option value="1" name="side">Single</option>
+                        <option value="2" name="side">B2B</option>
+                    </select>
+                </div>
+                <div style="margin-right:1%">
+                    <label>Number of Impressions</label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="type" id='imp' class="form-control" name="impressions">
+                </div>
             </div>
             <div class="form-group">
-                <label>Plate Number</label>
-                <input type="number" class="form-control" name="plateNumber">
+
             </div>
-            <div class="form-group">
-                <label>Paper Length</label>
-                <input type="number" class="form-control" name="paperLength">
-            </div>
-            <div class="form-group">
-                <label>Paper Width</label>
-                <input type="number" class="form-control" name="paperWidth">
-            </div>
-            <div class="form-group">
-                <label>Gripper </label>
-                <input type="text" class="form-control" name="gripper">
-            </div>
-            <div class="form-group">
-                <label>Sheet</label>
-                <input type="number" class="form-control" name="sheet">
-            </div>
-            <div class="form-group">
-                <label>Side</label>
-                <input type="type" class="form-control" name="side">
-            </div>
-            <div class="form-group">
-                <label>Number of Impressions</label>
-                <input type="number" class="form-control" name="impressions">
-            </div>
-            <div class="form-group">
-                <label>Deadline</label>
-                <input type="datetime-local" class="form-control" name="deadline">
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <label>Deadline</label>
+                    <input type="datetime-local" class="form-control" name="deadline">
+                </div>
             </div>
             <button type="submit" class="btn btn-warning btn-lg">Submit</button>
         </form>
         <hr>
     </div>
 </div>
+<script>
+    $('#sht').on("input", function () {
+        let dInput = this.value;
+        console.log(dInput);
+        let x = document.getElementById("sid").value;
+        if (!x) x = 0;
+        document.getElementById("imp").value = dInput * x;
+    });
+    $('#sid').on("input", function () {
+        let dInput = this.value;
+        console.log(dInput);
+        let x = document.getElementById("sht").value;
+        if (!x) x = 0;
+        document.getElementById("imp").value = dInput * x;
+    });
+
+</script>

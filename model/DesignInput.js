@@ -24,18 +24,23 @@ designSchema.statics.insertdesign = (data, cb) => {
         paperWidth: data.paperWidth,
         gripper: data.gripper,
         sheet: data.sheet,
-        side: data.side,
+        side: "Single",
         impressions: data.impressions,
         deadline: data.deadline
     });
+    if (data.side === 2) {
+        newDesign.side = 'B2B'
+    }
     newDesign
         .save()
         .then(design => {
+            console.log(design)
             return cb(200, null, design);
         })
         .catch(err => {
-            return cb(500, { msg: "Internal server Error" }, null);
             console.log(err);
+            return cb(500, { msg: "Internal server Error" }, null);
+
         });
 };
 designSchema.statics.getDesignById = function (id, cb) {
