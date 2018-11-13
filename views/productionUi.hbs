@@ -1,0 +1,84 @@
+<div class="container">
+
+    <div>
+
+        <h1><span class="fa fa-sign-in"></span> Print Meter</h1>
+
+        <!-- show any messages that come back with authentication -->
+        {{#if message }}
+        <div class="alert alert-danger">{{ message}}</div>
+        {{/if}}
+
+        <!-- LOGIN FORM -->
+        <form action="/production/insert" method="post">
+            <div class="form-group" style="display:flex">
+                <div style="margin-right:1%">
+                    <label>Machine ID</label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" id='sht' class="form-control" id='sheet' name="machineId">
+                    <p style="color:red">{{errors.machineId}}</p>
+
+                </div>
+            </div>
+            <div class="form-group" style="display: flex">
+                <div style="margin-right:3.5%">
+                    <label> Job ID : </label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Invoice No" name="invoiceNumber">
+
+                    <p style="color:red">{{errors.invoiceNumber}}</p>
+                </div>
+                <div style="margin-right:1%">
+                    <p style="font-size:20px; text-align:center"> - </p>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Item No" name="itemNumber">
+                    <p style="color:red">{{errors.itemNumber}}</p>
+                </div>
+                <div style="margin-right:1%">
+                    <p style="font-size:20px; text-align:center"> - </p>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Plate No" name="plateNumber">
+                    <p style="color:red">{{errors.plateNumber}}</p>
+                </div>
+            </div>
+            <div class="form-group" style="display:flex">
+                <div style="margin-right:1%">
+                    <label>Impression Meter : </label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Reading" name="impressionReading">
+                    <p style="color:red">{{errors.impressionReading}}</p>
+
+                </div>
+                <div style="margin-right:1%">
+                    <input type="number" class="form-control" placeholder="Count" name="impressionCount">
+                    <p style="color:red">{{errors.impressionCount}}</p>
+                </div>
+            </div>
+
+            <div class="form-group" style="display:flex">
+                <div style="margin-right:1%">
+                    <label>Start Time</label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="time" id='sht' class="form-control" id='sheet' name="starttime">
+                    <p style="color:red">{{errors.starttime}}</p>
+
+                </div>
+                <div style="margin-right:1%">
+                    <label>Finish time</label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="time" id='sht' class="form-control" id='sheet' name="finishtime">
+                    <p style="color:red">{{errors.finishtime}}</p>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+        </form>
+        <hr>
+    </div>
+</div>

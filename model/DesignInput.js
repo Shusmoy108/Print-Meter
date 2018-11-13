@@ -3,6 +3,7 @@ var bcrypt = require("bcrypt-nodejs");
 const ObjectId = mongoose.Types.ObjectId;
 // define the schema for our user model
 var designSchema = mongoose.Schema({
+    machineId: String,
     invoiceNumber: Number,
     itemNumber: Number,
     plateNumber: Number,
@@ -17,6 +18,7 @@ var designSchema = mongoose.Schema({
 
 designSchema.statics.insertdesign = (data, cb) => {
     const newDesign = new Design({
+        machineId: data.machineId,
         invoiceNumber: data.invoiceNumber,
         itemNumber: data.itemNumber,
         plateNumber: data.plateNumber,
@@ -28,7 +30,7 @@ designSchema.statics.insertdesign = (data, cb) => {
         impressions: data.impressions,
         deadline: data.deadline
     });
-    if (data.side === 2) {
+    if (data.side === '2') {
         newDesign.side = 'B2B'
     }
     newDesign

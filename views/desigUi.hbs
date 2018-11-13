@@ -11,25 +11,38 @@
 
         <!-- LOGIN FORM -->
         <form action="/design/insert" method="post">
+            <div class="form-group" style="display:flex">
+                <div style="margin-right:1%">
+                    <label>Machine ID</label>
+                </div>
+                <div style="margin-right:1%">
+                    <input type="text" class="form-control" name="machineId">
+                    <p style="color:red">{{errors.machineId}}</p>
 
+                </div>
+            </div>
             <div class="form-group" style="display: flex">
                 <div style="margin-right:3.5%">
                     <label> Job ID : </label>
                 </div>
                 <div style="margin-right:1%">
                     <input type="number" class="form-control" placeholder="Invoice No" name="invoiceNumber">
+
+                    <p style="color:red">{{errors.invoiceNumber}}</p>
                 </div>
                 <div style="margin-right:1%">
                     <p style="font-size:20px; text-align:center"> - </p>
                 </div>
                 <div style="margin-right:1%">
                     <input type="number" class="form-control" placeholder="Item No" name="itemNumber">
+                    <p style="color:red">{{errors.itemNumber}}</p>
                 </div>
                 <div style="margin-right:1%">
                     <p style="font-size:20px; text-align:center"> - </p>
                 </div>
                 <div style="margin-right:1%">
                     <input type="number" class="form-control" placeholder="Plate No" name="plateNumber">
+                    <p style="color:red">{{errors.plateNumber}}</p>
                 </div>
             </div>
             <div class="form-group" style="display:flex">
@@ -38,12 +51,15 @@
                 </div>
                 <div style="margin-right:1%">
                     <input type="number" class="form-control" placeholder="Length" name="paperLength">
+                    <p style="color:red">{{errors.paperLength}}</p>
+
                 </div>
                 <div style="margin-right:1%">
                     <p style="font-size:20px; text-align:center"> X </p>
                 </div>
                 <div style="margin-right:1%">
                     <input type="number" class="form-control" placeholder="Width" name="paperWidth">
+                    <p style="color:red">{{errors.paperWidth}}</p>
                 </div>
             </div>
             <div class="form-group">
@@ -51,6 +67,8 @@
                 <label class="radio-inline"><input type="radio" value="nogp" name="gripper" checked>No Gp</label>
                 <label class="radio-inline"><input type="radio" value="1gp" name="gripper">1 Gp</label>
                 <label class="radio-inline"><input type="radio" value="2gp" name="gripper">2 Gp</label>
+                <p style="color:red">{{errors.gripper}}</p>
+
             </div>
             <div class="form-group" style="display:flex">
                 <div style="margin-right:1%">
@@ -58,6 +76,8 @@
                 </div>
                 <div style="margin-right:1%">
                     <input type="number" id='sht' class="form-control" id='sheet' name="sheet">
+                    <p style="color:red">{{errors.sheet}}</p>
+
                 </div>
                 <div style="margin-right:1%">
                     <label>Side</label>
@@ -67,12 +87,16 @@
                         <option value="1" name="side">Single</option>
                         <option value="2" name="side">B2B</option>
                     </select>
+                    <p style="color:red">{{errors.side}}</p>
+
                 </div>
                 <div style="margin-right:1%">
                     <label>Number of Impressions</label>
                 </div>
                 <div style="margin-right:1%">
                     <input type="type" id='imp' class="form-control" name="impressions">
+                    <p style="color:red">{{errors.impressions}}</p>
+
                 </div>
             </div>
             <div class="form-group">
@@ -82,6 +106,8 @@
                 <div class="col-sm-3">
                     <label>Deadline</label>
                     <input type="datetime-local" class="form-control" name="deadline">
+                    <p style="color:red">{{errors.deadline}}</p>
+
                 </div>
             </div>
             <button type="submit" class="btn btn-warning btn-lg">Submit</button>
