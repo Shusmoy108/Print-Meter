@@ -27,7 +27,7 @@ productionSchema.statics.insertProduction = (data, cb) => {
 
     newProduction
         .save()
-        .then(design => {
+        .then(production => {
             console.log(production)
             return cb(200, null, production);
         })

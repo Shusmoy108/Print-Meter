@@ -15,7 +15,9 @@ router.get("/design/input", (req, res) => {
 router.get("/production/input", (req, res) => {
     res.render("productionUi", { errors: {} });
 });
-
+router.get("/", (req, res) => {
+    res.render("login");
+});
 router.post("/production/insert", (req, res) => {
     console.log(req.body);
     const valid = productionValidator.productionInput(req.body);
@@ -31,6 +33,17 @@ router.post("/production/insert", (req, res) => {
         });
     }
 });
+
+router.get("/production/all", (req, res) => {
+    Production.getProduction((status, err, productions) => {
+        if (status === 200) {
+            //console.log(designs);
+            res.render("productionpage", { productions: productions, page: true });
+        }
+    });
+});
+
+
 router.post("/design/insert", (req, res) => {
     console.log(req.body);
     const valid = validator.designInput(req.body);
@@ -45,14 +58,6 @@ router.post("/design/insert", (req, res) => {
             }
         });
     }
-});
-router.get("/production/all", (req, res) => {
-    Production.getProduction((status, err, designs) => {
-        if (status === 200) {
-            //console.log(designs);
-            res.render("printpage", { designs: designs, page: true });
-        }
-    });
 });
 
 router.get("/design/all", (req, res) => {
@@ -181,22 +186,22 @@ Handlebars.registerHelper("designpage", function (design) {
         "<div class='col-xs-1'><form  action='/designs/print' method='get'><button type='submit' ' class='btn btn-default'><span class='glyphicon glyphicon-list'></span></button></form></div>\n" +
         "</div></div>";
     let page = top + part1 + part2 + sign;
-    var myCSS =
+    let myCSS =
         "<html>\n" +
         "  <head>\n" +
         '      <link rel="stylesheet" href="stylesheets/bootstrap.min.css">\n' +
         '      <link rel="stylesheet" href="stylesheets/style.css">\n' +
         "  </head>\n" +
         "  <body>\n";
-    var logo =
+    let logo =
         "<div class='container' ><img src='../public/images/biggo.png' class='img-responsive' width='70px' /></div>\n";
-    var footer =
+    let footer =
         "<footer class='container-fluid text-center'><p>Project Management Software Made By</p>\n" +
         '<div class="row">' +
         '<div class="col-xs-offset-6">' +
         '<img src="../public//images/biggo.png" class="img-responsive" width=100px /></div></div></footer>\n';
-    var pageToprint = myCSS + logo + page + "\n" + footer + "</body></html>";
-    var options = {
+    let pageToprint = myCSS + logo + page + "\n" + footer + "</body></html>";
+    let options = {
         format: "letter",
         base: "http://localhost:5000/public/",
         // width: "865px",
@@ -210,7 +215,7 @@ Handlebars.registerHelper("designpage", function (design) {
         console.log("The file has been saved!");
         pdf
             .create(pageToprint, options)
-            .toFile("./public/pdf/print1.pdf", function (err, res2) {
+            .toFile("./public/pdf/print.pdf", function (err, res2) {
                 if (err) {
                     console.log(err);
                     console.log("error here");
@@ -289,4 +294,61 @@ Handlebars.registerHelper("designtable", function (designs) {
 
     return new Handlebars.SafeString(jobpage);
 });
+
+Handlebars.registerHelper("productiontable", function (productions) {
+    var jobpage = "";
+    jobpage =
+        jobpage +
+        "<div class='row'><table class=\"table table-bordered \" id='result'>\n" +
+        "    <thead><tr>\n" +
+        "        <th >Machine ID</th>\n" +
+        "        <th >Invoice Number</th>\n" +
+        "        <th>Item Number</th>\n" +
+        "        <th>Plate Number</th>" +
+        "        <th >Impression Reading</th>\n" +
+        "        <th>Impression Count</th>\n" +
+        "        <th >Start time</th>\n" +
+        "        <th >Finish Time</th>\n" +
+        // "        <th></th>\n" +
+        "</tr>\n<tbody>";
+    for (let i = 0; i < productions.length; i++) {
+        jobpage =
+            jobpage +
+            "<tr>" +
+            "<td>" +
+            productions[i].machineId +
+            "</td>" +
+            "<td>" +
+            productions[i].invoiceNumber +
+            "</td>" +
+            "<td>" +
+            productions[i].itemNumber +
+            "</td>" +
+            "<td>" +
+            productions[i].plateNumber +
+            "</td>" +
+
+            "<td>" +
+            productions[i].impressionReading +
+            "</td>" +
+            "<td>" +
+            productions[i].impressionCount +
+            "</td>" +
+            "<td>" +
+            new Date(productions[i].starttime).toLocaleTimeString() +
+            "</td>" +
+            "<td>" +
+            new Date(productions[i].finishtime).toLocaleTimeString() +
+            "</td>" +
+            // "<td><form  action='/design/" +
+            // productions[i]._id +
+            // "' method='get'><button type='submit' class='btn btn-default'><span class='glyphicon glyphicon-list'></span></button></form>" +
+            // "</td>"+
+            "</tr>";
+    }
+    jobpage = jobpage + "</tbody></table></div></div>";
+
+    return new Handlebars.SafeString(jobpage);
+});
+
 module.exports = router;
